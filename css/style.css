@@ -1,1 +1,37 @@
-img{height:300px;width:300px;padding: 80px;}
+img{
+    height:300px;
+    width:300px;
+    padding: 80px;
+}
+
+
+#viewchart{
+    border: 1px solid black;    
+}
+
+#center{
+    width: 300px;
+    height: 150px;
+    
+    margin: 10px auto;
+}
+ul{
+    margin-left: 500px;
+}
+
+header{text-align: center;background-color: #FEFEAD;}
+
+body{
+    
+    margin: 0px;
+    
+}
+
+article{
+    text-align: center;
+}
+
+body{background-color: #D3BD84;}
+
+
+
