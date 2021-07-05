@@ -12,9 +12,22 @@ containerEl.appendChild(imageEl2);
 let imageEl3 = document.getElementById("thirdimage")
 containerEl.appendChild(imageEl3);
 
-let img_array = ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg", "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulhu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg", "water-can.jpg", "wine-glass.jpg"];
+let randomindexvalue=0;
 
+let firstelement=0;
+
+let index_array=[];
+
+let votes_array=[];
+
+let views_array=[];
+
+
+let img_array = ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg", "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulhu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg", "water-can.jpg", "wine-glass.jpg"];
+let img_name=[];
 let objects_array = [];
+
+let Random1,Random2,Random3,NotRandom1,NotRandom2,NotRandom3;
 
 let attempts = 0
 let max_attempts = 25;
@@ -28,34 +41,50 @@ function createimg(imgpath) {
     this.imgpath = "img/" + imgpath;
     this.imgview = 0;
     this.votes = 0;
+    img_name.push(this.imgname);
     objects_array.push(this);
 
 
 }
 
 
+
 function randomindex() {
 
-    return Math.floor(Math.random() * img_array.length);
+    return Math.floor(Math.random() * img_array.length)
 
 }
+
+// function uniqueNum(){
+
+ 
+
+
+// }
 
 let leftindex;
 let middleindex;
 let rightindex;
 
-function displayimg() {
 
+
+function displayimg() {
+    
     leftindex = randomindex();
     middleindex = randomindex();
     rightindex = randomindex();
 
-    while (leftindex == rightindex || rightindex == middleindex || middleindex == leftindex) {
+    while (leftindex == rightindex || rightindex == middleindex || middleindex == leftindex||index_array.includes(leftindex)||index_array.includes(rightindex)||index_array.includes(middleindex)) {
         leftindex = randomindex();
         middleindex= randomindex();
         rightindex = randomindex();
 
     }
+    
+    index_array=[]
+    index_array.push(leftindex);
+    index_array.push(middleindex);
+    index_array.push(rightindex);
 
     imageEl1.setAttribute("src", objects_array[leftindex].imgpath);
     imageEl2.setAttribute("src", objects_array[middleindex].imgpath);
@@ -87,7 +116,9 @@ for (let i = 0; i < img_array.length; i++) {
 
 }
 
+
 displayimg();
+
 
 
 let buttonEl = document.getElementById("viewchart");
@@ -103,7 +134,11 @@ function clickbutton(event) {
         liEl.textContent = `${objects_array[i].imgname} has ${objects_array[i].votes} votes and ${objects_array[i].imgview} views .`;
         ulEl.appendChild(liEl);
         containerEl.appendChild(ulEl);
+        views_array.push(objects_array[i].imgview);
+        votes_array.push(objects_array[i].votes);
     }
+    displaychart();
+
 }
 
 
@@ -148,8 +183,50 @@ function clicks(event) {
         // rightImgEl.removeEventListener('click', handelClicks);
     }
     attempts++;
+}
 
 
+
+function displaychart(){
+
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: img_name,
+        datasets: [{
+            label: '# of Votes',
+            data: votes_array,
+            backgroundColor: [
+
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderWidth: 1
+        },
+        {
+            label: '# of Views',
+            data: views_array,
+            backgroundColor: [
+
+                'rgba(199, 99, 132, 1)'
+            ],
+            borderColor: [
+                'rgba(199, 99, 132, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 }
 
 
