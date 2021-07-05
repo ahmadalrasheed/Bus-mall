@@ -50,9 +50,11 @@ function displayimg() {
     middleindex = randomindex();
     rightindex = randomindex();
 
-    if (leftindex == rightindex || rightindex == middleindex || middleindex == leftindex) {
+    while (leftindex == rightindex || rightindex == middleindex || middleindex == leftindex) {
         leftindex = randomindex();
+        middleindex= randomindex();
         rightindex = randomindex();
+
     }
 
     imageEl1.setAttribute("src", objects_array[leftindex].imgpath);
