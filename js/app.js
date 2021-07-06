@@ -142,9 +142,10 @@ function clickbutton(event) {
 }
 
 
-imageEl1.addEventListener('click', clicks);
-imageEl2.addEventListener('click', clicks);
-imageEl3.addEventListener('click', clicks);
+// .addEventListener('click', clicks);
+// imageEl2.addEventListener('click', clicks);
+
+containerEl.addEventListener('click', clicks);
 
 // let ulEl=document.getElementById("list");
 // containerEl.appendChild(ulEl)
@@ -173,9 +174,10 @@ function clicks(event) {
         // buttonEl.textContent='View Result';
         buttonEl.addEventListener('click', clickbutton);
         // containerEl.appendChild(buttonEl);
-        imageEl1.removeEventListener('click', clicks);
-        imageEl2.removeEventListener('click', clicks);
-        imageEl3.removeEventListener('click', clicks);
+        containerEl.removeEventListener('click', clicks);
+
+        // imageEl2.removeEventListener('click', clicks);
+        // imageEl3.removeEventListener('click', clicks);
 
 
 
