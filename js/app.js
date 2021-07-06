@@ -1,5 +1,8 @@
 "use strict";
 
+let attempts = 0
+let max_attempts = 25;
+
 let containerEl = document.getElementById("container");
 console.log(containerEl);
 
@@ -23,14 +26,45 @@ let votes_array=[];
 let views_array=[];
 
 
+
 let img_array = ["bag.jpg", "banana.jpg", "bathroom.jpg", "boots.jpg", "breakfast.jpg", "bubblegum.jpg", "chair.jpg", "cthulhu.jpg", "dog-duck.jpg", "dragon.jpg", "pen.jpg", "pet-sweep.jpg", "scissors.jpg", "shark.jpg", "sweep.png", "tauntaun.jpg", "unicorn.jpg", "water-can.jpg", "wine-glass.jpg"];
 let img_name=[];
+
+
+function deflocalstorage(){
+
+    let localstring=JSON.stringify(objects_array);
+    // local_object_array.push(localstring);
+    
+    localStorage.setItem('images',localstring);
+
+    // console.log(typeof local_string_array);
+    // console.log(typeof localstring);
+    // console.log(typeof local_string_array);
+    // console.log(typeof objects_array);
+    
+    // console.log(localobject);
+}
+    
+  
+function readlocalstorage(){
+    let read_string=localStorage.getItem('images');
+
+    let read_object=JSON.parse(read_string);
+    console.log(read_object);
+    if(read_object!=null){
+        objects_array=read_object;
+    }
+    
+}
+
+
+
 let objects_array = [];
 
 let Random1,Random2,Random3,NotRandom1,NotRandom2,NotRandom3;
 
-let attempts = 0
-let max_attempts = 25;
+
 
 
 
@@ -103,6 +137,8 @@ function displayimg() {
     objects_array[leftindex].imgview++;
     objects_array[middleindex].imgview++;
     objects_array[rightindex].imgview++;
+    
+
 
 }
 
@@ -119,12 +155,14 @@ for (let i = 0; i < img_array.length; i++) {
 
 displayimg();
 
+readlocalstorage();
 
 
 let buttonEl = document.getElementById("viewchart");
 
 
 function clickbutton(event) {
+    
 
     let ulEl = document.getElementById('list');
 
@@ -137,7 +175,13 @@ function clickbutton(event) {
         views_array.push(objects_array[i].imgview);
         votes_array.push(objects_array[i].votes);
     }
+
+    
+    
     displaychart();
+    
+
+    
 
 }
 
@@ -183,7 +227,8 @@ function clicks(event) {
 
         // leftImgEl.removeEventListener('click', handelClicks);
         // rightImgEl.removeEventListener('click', handelClicks);
-    }
+    }deflocalstorage();
+    
     attempts++;
 }
 
