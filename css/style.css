@@ -19,7 +19,9 @@ ul{
     margin-left: 500px;
 }
 
-header{text-align: center;background-color: #FFE1CE;font-size: 30px;}
+header{text-align: center;background-color: #FFE1CE;font-size: 50px;height:80px;}
+
+header h1{padding-top: 20px;font-family: 'Brush Script MT', cursive;}
 
 body{
     
@@ -34,8 +36,13 @@ article{
 body{background-color: #FFF1F1;}
 
 
+main article p{padding-top: 25px;font-family: Georgia, serif;}
 
 
 
 
+#container{
+    background-image:url(https://cdn.wallpapersafari.com/38/33/cg6M4y.jpg) ;
+    margin-top: 20px;
+}
 
